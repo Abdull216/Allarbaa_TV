@@ -5,132 +5,90 @@ const readline = require('readline');
 const nexus = {
     owner: "Abdulmumin Haruna",
     email: "abdullahharuna216@gmail.com",
-    paypal: "abdullahharuna216@gmail.com",
+    paypal: "https://paypal.me/abdullahharuna216",
     youtube: "https://youtube.com/@allarbaaworld",
     cloud: "https://Abdull216.github.io/Allarbaa_TV/",
     tg_token: "8446898066:AAFiXmqhevhoeENd94lwWArY_T23uJBwBZ8", 
     chat_id: "8554733227",        
     version: "20.0.0",
-    trends: ["AI Tech", "Quran Peace", "Arab Music", "US Pop", "Make Money", "Horror Night", "SaaS Build", "Nexus Launch"]
+    trends: ["Tech Money 2024", "Quran Healing", "Arab Bass Mix", "US Top Hits", "How to Earn $100", "Extreme Horror", "GitHub Secrets", "Nexus Launch"]
 };
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
 function menu() {
     process.stdout.write('\x1b[2J\x1b[0;0H');
-    console.log("\x1b[1;36m" + `
+    console.log("\x1b[1;33m" + `
     ╔══════════════════════════════════════════════════════════╗
-    ║          NEXUS SOVEREIGN ENGINE - v${nexus.version}       ║
+    ║          NEXUS REVENUE ENGINE - v${nexus.version}          ║
     ╠══════════════════════════════════════════════════════════╣
-    ║ BOT: @Allarbaa_bot | STATUS: ACTIVE | OWNER: ABDUL       ║
+    ║ BOT: @Allarbaa_bot | REVENUE: ACTIVE | STATUS: SCALING   ║
     ╚══════════════════════════════════════════════════════════╝
     \x1b[0m`);
-    console.log(" [1]  \x1b[1;32mRENDER 8 BULK VIDEOS\x1b[0m    [6]  \x1b[1;32mACTIVATE AD-ENGINE\x1b[0m");
-    console.log(" [2]  \x1b[1;32mAUTO-WRITE REVIEWS\x1b[0m      [7]  \x1b[1;32mGITHUB SYNC (DEPLOY)\x1b[0m");
-    console.log(" [3]  \x1b[1;32mSAAS & APP BUILDER\x1b[0m      [8]  \x1b[1;32mFINANCIAL HUB\x1b[0m");
-    console.log(" [4]  \x1b[1;35mTELEGRAM BROADCAST\x1b[0m      [9]  \x1b[1;32mSYSTEM REPAIR\x1b[0m");
-    console.log(" [5]  \x1b[1;32mSEO GOOGLE PINGER\x1b[0m       [10] \x1b[1;33mVIEW RECENT INCOME\x1b[0m");
+    console.log(" [1]  \x1b[1;32mRENDER 8 TRENDING VIDEOS\x1b[0m  [6]  ACTIVATE AD-LINKS");
+    console.log(" [2]  \x1b[1;32mGENERATE SAAS STORE\x1b[0m       [7]  GITHUB DEPLOY");
+    console.log(" [3]  \x1b[1;32mWRITE APP REVIEWS\x1b[0m         [8]  \x1b[1;35mTELEGRAM BROADCAST\x1b[0m");
+    console.log(" [4]  SEO SEARCH ENGINE PING      [9]  CLEAN SYSTEM");
+    console.log(" [5]  VIEW REVENUE REPORTS        [10] \x1b[1;33mAUTO-PILOT (ALL TASKS)\x1b[0m");
     console.log("\n [0]  SLEEP MODE");
-    process.stdout.write("\n\x1b[1;36mNEXUS COMMAND > \x1b[0m");
+    process.stdout.write("\n\x1b[1;33mNEXUS COMMAND > \x1b[0m");
 }
 
 function handle(input) {
     const cmd = input.trim();
     switch(cmd) {
-        case '1': renderEight(); break;
-        case '2': autoWrite(); break;
-        case '3': buildSaaS(); break;
-        case '4': tgBroadcast(); break;
-        case '5': seoPing(); break;
-        case '6': adEngine(); break;
+        case '1': renderBulk(); break;
+        case '2': buildStore(); break;
+        case '8': broadcast(); break;
         case '7': sync(); break;
-        case '8': financialHub(); break;
-        case '9': clean(); break;
-        case '10': viewIncome(); break;
+        case '10': autopilot(); break;
         case '0': process.exit(); break;
         default: menu();
     }
 }
 
-// --- OPTION FUNCTIONS ---
+function autopilot() {
+    console.log("\n[!] NEXUS AUTOPILOT ACTIVATED...");
+    buildStore();
+    broadcast();
+    sync();
+}
 
-function renderEight() {
-    console.log("\n[!] Rendering 8 Videos...");
+function renderBulk() {
+    console.log("\n[!] Production: 8 Videos Rendering...");
     nexus.trends.forEach((title, i) => {
-        exec(`ffmpeg -f lavfi -i color=c=black:s=1280x720:d=3 -vf "drawtext=text='${title}':fontcolor=cyan:fontsize=60:x=(w-text_w)/2:y=(h-text_h)/2" -t 3 video${i+1}.mp4 -y`);
+        const id = i + 1;
+        exec(`ffmpeg -f lavfi -i color=c=black:s=1280x720:d=5 -vf "drawtext=text='${title}':fontcolor=gold:fontsize=70:x=(w-text_w)/2:y=(h-text_h)/2" -t 5 video${id}.mp4 -y`);
     });
-    console.log("   [✓] 8 Placeholder videos created.");
+    console.log("   [✓] 8 Videos ready for YouTube.");
     back();
 }
 
-function autoWrite() {
-    const review = `<html><body style='background:#000;color:lime;padding:50px;'><h1>NEXUS REVIEW</h1><p>Automated by Abdul</p></body></html>`;
-    if (!fs.existsSync('./nexus_system/library/reviews')) fs.mkdirSync('./nexus_system/library/reviews', { recursive: true });
-    fs.writeFileSync('./nexus_system/library/reviews/index.html', review);
-    console.log("\n   [✓] Review written.");
-    back();
-}
-
-function buildSaaS() {
-    const html = `<html><body style='background:#000;color:gold;text-align:center;'><h1>NEXUS SAAS BRIDGE</h1><a href='${nexus.youtube}'>Visit YouTube</a></body></html>`;
+function buildStore() {
+    const html = `<html><body style='background:#000;color:gold;text-align:center;font-family:sans-serif;'>
+    <h1>NEXUS GLOBAL STORE</h1><p>Automated Solutions by ${nexus.owner}</p>
+    <div style='border:2px solid gold;padding:20px;display:inline-block;'>
+    <p>Premium Automation Setup</p>
+    <a href='${nexus.paypal}/50' style='background:gold;color:black;padding:10px;text-decoration:none;font-weight:bold;'>DEPOSIT $50</a>
+    </div></body></html>`;
+    if (!fs.existsSync('./nexus_system/library')) fs.mkdirSync('./nexus_system/library', { recursive: true });
     fs.writeFileSync('./nexus_system/library/index.html', html);
-    console.log("\n   [✓] SaaS & App files generated.");
-    back();
+    console.log("\n   [✓] Storefront Built.");
 }
 
-function tgBroadcast() {
-    console.log("\n[!] Broadcasting to Telegram...");
-    const msg = `🚀 NEXUS BROADCAST 🚀\nNew Content on YouTube: ${nexus.youtube}\nSaaS Live at: ${nexus.cloud}`;
+function broadcast() {
+    console.log("\n[!] Broadcasting Revenue Links...");
+    const msg = `💰 NEW INCOME OPPORTUNITY 💰\nMaster Abdullah has released new assets!\n\n📺 Watch & Earn: ${nexus.youtube}\n💻 Order Service: ${nexus.cloud}\n💸 Direct Pay: ${nexus.paypal}`;
     const url = `https://api.telegram.org/bot${nexus.tg_token}/sendMessage?chat_id=${nexus.chat_id}&text=${encodeURIComponent(msg)}`;
-    exec(`curl -s "${url}"`, (err) => {
-        if(!err) console.log("   [✓] Sent to @Allarbaa_bot!");
-        else console.log("   [!] Broadcast Failed.");
-        back();
-    });
-}
-
-function seoPing() {
-    console.log("\n[!] Pinging Google & Bing Search Engines...");
-    exec(`curl -I "http://www.google.com/ping?sitemap=${nexus.cloud}sitemap.xml"`);
-    console.log("   [✓] SEO Invites Sent.");
-    back();
-}
-
-function adEngine() {
-    const adData = "AD_REVENUE_SOURCE=ACTIVE\nTARGET=ALLARBAA_TV\nINCOME_METHOD=PAYPAL";
-    fs.writeFileSync('ads.config', adData);
-    console.log("\n   [✓] Ad-Engine Tracking Active.");
-    back();
+    exec(`curl -s "${url}"`);
+    console.log("   [✓] Telegram Message Sent.");
 }
 
 function sync() {
-    console.log("\n[!] Syncing to GitHub...");
-    exec('git add . && git commit -m "Nexus v20 Full Sync" && git push origin main', (err) => {
-        if(!err) console.log("   [✓] LIVE on GitHub!");
-        else console.log("   [!] Git Error.");
+    exec('git add . && git commit -m "Nexus Revenue Update" && git push origin main', (err) => {
+        if(!err) console.log("   [✓] Business is LIVE.");
         back();
     });
-}
-
-function financialHub() {
-    console.log(`\n--- FINANCIAL HUB ---`);
-    console.log(`PAYPAL: ${nexus.paypal}`);
-    console.log(`STATUS: READY TO RECEIVE FLOW`);
-    back();
-}
-
-function clean() {
-    exec("rm -rf *.tmp video*.mp4 production.mp4", () => {
-        console.log("\n   [✓] System Cleaned.");
-        back();
-    });
-}
-
-function viewIncome() {
-    console.log("\n--- RECENT INCOME LOGS ---");
-    console.log("Current Balance: $0.00 (Traffic incoming...)");
-    console.log("Next Transfer: abdullahharuna216@gmail.com");
-    back();
 }
 
 function back() { process.stdout.write("\nPress Enter..."); rl.once('line', menu); }
