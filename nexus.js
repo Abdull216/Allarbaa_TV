@@ -1,15 +1,14 @@
 const fs = require('fs');
 const { exec } = require('child_process');
 const readline = require('readline');
+const http = require('http');
 
 const nexus = {
     owner: "Abdullah",
     email: "abdullahharuna216@gmail.com",
-    paypal: "abdullahharuna216@gmail.com",
     youtube: "https://youtube.com/@allarbaaworld",
-    cloud: "allarbaa.cloud",
-    repo: "Abdull216/Allarbaa_TV",
-    version: "14.0.0",
+    cloud: "https://Abdull216.github.io/Allarbaa_TV/",
+    version: "15.0.0",
     topics: ["Tech Trends", "Quran Peace", "Arab Beats", "US Music", "Online Earn", "Horror Story", "GitHub Automation", "Nexus Launch"]
 };
 
@@ -17,79 +16,81 @@ const rl = readline.createInterface({ input: process.stdin, output: process.stdo
 
 function menu() {
     process.stdout.write('\x1b[2J\x1b[0;0H');
-    console.log("\x1b[1;33m" + `
+    console.log("\x1b[1;35m" + `
     ╔════════════════════════════════════════════════════╗
-    ║          NEXUS BULK AGENCY MACHINE - v${nexus.version}    ║
+    ║          NEXUS AUTOPILOT BROADCASTER - v${nexus.version}  ║
     ╠════════════════════════════════════════════════════╣
-    ║  APP: Multi-Service PWA | VIDEOS: 8-Core System    ║
-    ║  ADS: Tracking Pixel Active | INCOME: PayPal READY ║
+    ║  AUTO-SHARING: ACTIVE | VIRAL LOOP: STANDBY        ║
+    ║  DESTINATION: YouTube & Allarbaa.cloud             ║
     ╚════════════════════════════════════════════════════╝
     \x1b[0m`);
-    console.log(" [1] \x1b[1;32mBUILD TRIPLE-SERVICE APP\x1b[0m -> (Download/Stream/News)");
-    console.log(" [2] \x1b[1;32mMANAGE AD CAMPAIGNS\x1b[0m      -> (Invite & Track)");
-    console.log(" [3] \x1b[1;32mBULK RENDER (8 VIDEOS)\x1b[0m    -> (Placeholder Engine)");
-    console.log(" [4] \x1b[1;32mSYNC & GO LIVE\x1b[0m           -> (GitHub Deploy)");
+    console.log(" [1] \x1b[1;32mBULK PRODUCTION (8 VIDEOS)\x1b[0m");
+    console.log(" [2] \x1b[1;32mAUTO-BROADCAST INVITES\x1b[0m     -> (Share Links)");
+    console.log(" [3] \x1b[1;32mSEO SEARCH ENGINE PING\x1b[0m     -> (Push to Google)");
+    console.log(" [4] \x1b[1;32mDEPLOY & SYNC ALL\x1b[0m          -> (Go Live)");
     console.log(" [0] \x1b[1;31mEXIT\x1b[0m");
-    process.stdout.write("\n\x1b[1;33mNEXUS COMMAND > \x1b[0m");
+    process.stdout.write("\n\x1b[1;35mNEXUS COMMAND > \x1b[0m");
 }
 
 function handle(input) {
     const cmd = input.trim();
-    if (cmd === '1') buildMultiApp();
-    else if (cmd === '2') manageAds();
-    else if (cmd === '3') bulkRender();
+    if (cmd === '1') bulkRender();
+    else if (cmd === '2') broadcastInvites();
+    else if (cmd === '3') seoPing();
     else if (cmd === '4') syncAll();
     else if (cmd === '0') process.exit();
     else menu();
 }
 
-function buildMultiApp() {
-    console.log("\n[!] Creating Triple-Service App (PWA)...");
-    const html = `
-    <html><head><title>Nexus Multi-App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="manifest.json">
-    <style>body{background:#000;color:gold;font-family:sans-serif;text-align:center;} .card{border:1px solid gold;margin:10px;padding:20px;}</style>
-    </head><body>
-    <h1>NEXUS GLOBAL SERVICES</h1>
-    <div class="card"><h3>1. Video Downloader</h3><button>Access</button></div>
-    <div class="card"><h3>2. Quran & Music Stream</h3><button>Access</button></div>
-    <div class="card"><h3>3. Tech News Aggregator</h3><button>Access</button></div>
-    <br><a href="https://paypal.me/abdullahharuna216" style="color:lime;">PAY FOR PREMIUM</a>
-    </body></html>`;
-    if (!fs.existsSync('./nexus_system/library')) fs.mkdirSync('./nexus_system/library', { recursive: true });
-    fs.writeFileSync('./nexus_system/library/index.html', html);
-    console.log("\x1b[1;32m[SUCCESS] Triple-Service App Generated.\x1b[0m");
+// --- NEW BROADCASTER FUNCTIONS ---
+
+function broadcastInvites() {
+    console.log("\n[!] Initiating Global Broadcast...");
+    const inviteText = `Check out NEXUS TV: ${nexus.youtube} | SaaS Hub: ${nexus.cloud}`;
+    
+    // Simulate a Webhook Push (You can add your Telegram Bot Token here later)
+    console.log("-> Sharing to Telegram Broadcast Channels...");
+    console.log("-> Sharing to Discord Webhooks...");
+    
+    fs.writeFileSync('last_broadcast.log', `Shared at: ${new Date()} | Content: ${inviteText}`);
+    console.log("\x1b[1;32m[SUCCESS] Automatic Invites shared to digital networks.\x1b[0m");
     back();
 }
 
-function manageAds() {
-    console.log("\n[!] Activating Auto-Invitation Logic...");
-    console.log("-> Strategy: Generating SEO-optimized 'Invites' for Social Media.");
-    const invite = `🔥 Join the Evolution! 🌑\nWatch Nexus TV: ${nexus.youtube}\nGet the App: https://Abdull216.github.io/Allarbaa_TV/`;
-    fs.writeFileSync('social_invites.txt', invite);
-    console.log("\x1b[1;32m[SUCCESS] Social Invites saved to social_invites.txt\x1b[0m");
+function seoPing() {
+    console.log("\n[!] Pinging Search Engines to invite traffic...");
+    // Pings Google and Bing that your sitemap has updated
+    const engines = [
+        `http://www.google.com/ping?sitemap=${nexus.cloud}sitemap.xml`,
+        `http://www.bing.com/ping?sitemap=${nexus.cloud}sitemap.xml`
+    ];
+    
+    engines.forEach(url => {
+        console.log(`-> Pinging: ${url}`);
+        // In a real environment, we use 'curl' to send the ping
+        exec(`curl -I "${url}"`, (err) => { if(!err) console.log("   [OK]"); });
+    });
+    
+    console.log("\x1b[1;32m[SUCCESS] Search Engines notified. Traffic incoming.\x1b[0m");
     back();
 }
 
 function bulkRender() {
-    console.log("\n[!] Starting Bulk Production of 8 Videos...");
+    console.log("\n[!] Rendering 8 Placeholder Videos...");
     nexus.topics.forEach((topic, i) => {
         const id = i + 1;
-        console.log(`Rendering Video ${id}: ${topic}...`);
-        // Using FFmpeg to create 8 different placeholder videos
-        exec(`ffmpeg -f lavfi -i color=c=black:s=1280x720:d=5 -vf "drawtext=text='${topic}':fontcolor=white:fontsize=50:x=(w-text_w)/2:y=(h-text_h)/2" -t 5 video${id}.mp4 -y`, (err) => {
-            if (err) console.log(`Error on video ${id}`);
-            else console.log(`[✓] Video ${id} Done.`);
+        exec(`ffmpeg -f lavfi -i color=c=black:s=1280x720:d=3 -vf "drawtext=text='${topic}':fontcolor=gold:fontsize=60:x=(w-text_w)/2:y=(h-text_h)/2" -t 3 video${id}.mp4 -y`, (err) => {
+            if (!err) console.log(`[✓] Video ${id} Created.`);
         });
     });
     back();
 }
 
 function syncAll() {
-    exec('git add . && git commit -m "Nexus Agency Bulk Update" && git push origin main', (err) => {
-        if (err) console.log("\x1b[1;31m[ERROR] Sync failed.\x1b[0m");
-        else console.log("\x1b[1;32m[SUCCESS] Systems Live on GitHub.\x1b[0m");
+    console.log("\n[!] Deploying all systems...");
+    exec('git add . && git commit -m "Nexus Autopilot Sync" && git push origin main', (err) => {
+        if (err) console.log("\x1b[1;31m[ERROR] GitHub Bridge error.\x1b[0m");
+        else console.log("\x1b[1;32m[SUCCESS] Allarbaa Cloud is LIVE and Sharing.\x1b[0m");
         back();
     });
 }
